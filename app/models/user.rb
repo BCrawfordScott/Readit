@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
-    user.try(:is_password?, password) ? user : nil
+    return user if user && user.is_password?(password)
   end
 
   def reset_session_token!

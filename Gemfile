@@ -46,7 +46,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rails-controller-testing'
-
+  gem 'db-query-matchers'
 end
 
 group :development do
