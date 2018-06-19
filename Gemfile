@@ -40,9 +40,12 @@ gem 'pry-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rails-controller-testing'
 
 end
 
@@ -54,8 +57,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rspec-rails'
-  gem 'factory_bot_rails'
-  gem 'rails-controller-testing'
   gem 'annotate'
 end
 
@@ -66,7 +67,6 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'launchy'
-  gem 'faker'
   gem 'guard-rspec'
   gem 'shoulda-matchers'
 
