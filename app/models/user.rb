@@ -19,15 +19,15 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  attr_accessor :password
+  attr_reader :password
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     user.try(:is_password?, password) ? user : nil
   end
 
-  def reset_session_token
-    self.session_token = ensure_session_token
+  def reset_session_token!
+    self.session_token = generate_token
     self.save!
     self.session_token
   end
@@ -44,15 +44,15 @@ class User < ApplicationRecord
   private
 
   def ensure_session_token
-    new_token = generate_token
-    unless User.exists?(session_token: new_token)
-      new_token = generate_token
-    end
-
-    new_token
+    self.session_token ||= generate_token
   end
 
   def generate_token
-    SecureRandom::urlsafe_base64(16)
+    new_token = SecureRandom::urlsafe_base64(16)
+    unless User.exists?(session_token: new_token)
+      new_token = SecureRandom::urlsafe_base64(16)
+    end
+
+    new_token
   end
 end
