@@ -21,8 +21,8 @@ RSpec.describe ApplicationController, type: :controller do
       expect(subject.current_user).to eq user
     end
 
-    it "only hits the database once" do
-      expect { 10.times { subject.current_user } }.to make_database_queries(count: 1)
+    it "doesn't hit the database after login" do
+      expect { 10.times { subject.current_user } }.to_not make_database_queries
     end
 
     it "returns nil if no one is logged in" do
@@ -41,6 +41,30 @@ RSpec.describe ApplicationController, type: :controller do
 
     it "returns false if no one is logged in" do
       expect(subject.logged_in?).to be false
+    end
+  end
+
+  describe "logout!" do
+    it "sets the session cookie's session token to nil" do
+      subject.login!(user)
+      subject.logout!
+
+      expect(subject.session[:session_token]).to be_nil
+    end
+
+    it "sets the current user to nil" do
+      subject.login!(user)
+      subject.logout!
+
+      expect(subject.current_user).to be_nil
+    end
+
+    it "changes the user's session token" do
+      subject.login!(user)
+      old_token = user.session_token
+      subject.logout!
+
+      expect(old_token).to_not eq user.session_token
     end
   end
 

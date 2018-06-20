@@ -1,5 +1,4 @@
 require 'rails_helper'
-# require "rspec/json_expectations"
 
 RSpec.describe Api::UsersController, type: :controller do
   let!(:user) { create(:user) }
