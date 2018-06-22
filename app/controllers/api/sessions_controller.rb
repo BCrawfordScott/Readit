@@ -1,6 +1,7 @@
 class Api::SessionsController < ApplicationController
 
   def create
+    debugger
     @user = User.find_by_credentials(
       params[:user][:username],
       params[:user][:password]
@@ -21,5 +22,10 @@ class Api::SessionsController < ApplicationController
     else
       render json: ["No one is logged in..."], status: 422
     end
+  end
+
+  private
+  def session_params
+    params.require(:session).permit(:user)
   end
 end

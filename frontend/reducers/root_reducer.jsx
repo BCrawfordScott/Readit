@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
 
 const rootReducer = () => {
-  combineReducers({
-    sessions: {}
-  });
+  return {};
 };
 
 export default rootReducer;
