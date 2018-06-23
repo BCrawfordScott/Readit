@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
 
+  //TESTING//
   window.getState = store.getState;
-  window.login = login;
-  window.logout = logout;
-  // debugger
+  //TESTING//
+
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
 });

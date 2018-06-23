@@ -3,22 +3,23 @@ require 'rails_helper'
 RSpec.describe Api::SessionsController, type: :controller do
 
   let!(:user) { create(:user) }
-  let(:good_login) {
+  let(:good_login) do
     post :create, params: {
       user: {
         username: user.username,
         password: "waffles"
       }
     }, format: :json
-  }
-  let(:bad_login) {
+  end
+
+  let(:bad_login) do
     post :create, params: {
       user: {
         username: user.username,
         password: "notwaffles"
       }
     }, format: :json
-  }
+  end
 
   describe "POST #create" do
     context "with valid credentials" do
@@ -51,7 +52,7 @@ RSpec.describe Api::SessionsController, type: :controller do
     context "when a user is logged in" do
       it "logs out the current user" do
         good_login
-        
+
         delete :destroy
         expect(subject.current_user).to be_nil
       end
