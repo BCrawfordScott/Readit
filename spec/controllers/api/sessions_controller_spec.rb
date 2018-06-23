@@ -51,9 +51,9 @@ RSpec.describe Api::SessionsController, type: :controller do
     context "when a user is logged in" do
       it "logs out the current user" do
         good_login
-
+        
         delete :destroy
-        expect(subject.current_user.session_token).to_not eq(subject.session[:session_token])
+        expect(subject.current_user).to be_nil
       end
     end
 

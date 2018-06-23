@@ -23,6 +23,7 @@ RSpec.describe Api::UsersController, type: :controller do
 
   describe "GET #show" do
     it "renders json from api/users/show" do
+      subject.login!(user)
       get :show, params: { id: user.id }, format: :json
 
       expect(response).to have_http_status(200)
@@ -109,6 +110,7 @@ RSpec.describe Api::UsersController, type: :controller do
     context "if user is not the current_user" do
       it "renders json of failure" do
         delete_user = User.last
+        subject.login!(user)
         delete :destroy, params: { id: delete_user.id }, format: :json
         parsed = JSON.parse(response.body)
 
