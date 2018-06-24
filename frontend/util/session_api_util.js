@@ -1,18 +1,9 @@
-import headers from './header_config.js';
+import { rorFetch } from './ror_fetch.js';
 
-export const login = (data) => {
-  return fetch('/api/session', {
-    headers: headers,
-    body: JSON.stringify(data),
-    method: 'POST',
-    credentials: 'same-origin'
-  }).then(response => response.json());
+export const login = (user) => {
+  return rorFetch('/api/session', 'POST', user);
 };
 
 export const logout = () => {
-  return fetch('/api/session', {
-    headers: headers,
-    method: 'DELETE',
-    credentials: 'same-origin'
-  }).then(response => response.json());
+  return rorFetch('/api/session', 'DELETE');
 };

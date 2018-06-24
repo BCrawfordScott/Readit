@@ -18,12 +18,14 @@ class Api::SessionsController < ApplicationController
     @user = current_user
     if @user
       logout!
+      render json: { id: @user.id }
     else
       render json: ["No one is logged in..."], status: 422
     end
   end
 
   private
+
   def session_params
     params.require(:session).permit(:user)
   end
