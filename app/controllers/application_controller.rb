@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_logged_in
-    render json: ["You must be logged in to do that!"], status: 422 unless logged_in?
+    render json: {err:["You must be logged in to do that!"]}, status: 422 unless logged_in?
   end
 
   def ensure_logged_out; end

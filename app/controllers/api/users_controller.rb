@@ -4,7 +4,11 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    render "api/users/show"
+    if @user
+      render "api/users/show"
+    else
+      render json: @user.errors.full_messages, status: 404
+    end
   end
 
   def create

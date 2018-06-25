@@ -1,4 +1,4 @@
-import { rorFetch } from './ror_fetch.js';
+import rorFetch from './ror_fetch.js';
 
 export const login = (user) => {
   return rorFetch('/api/session', 'POST', user);

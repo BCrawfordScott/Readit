@@ -21,7 +21,7 @@ export const removeCurrentUser = (userId) => {
 export const receiveSessionErrors = err => {
   return {
     type: RECEIVE_SESSION_ERRORS,
-    err
+    err: err.message
   };
 };
 

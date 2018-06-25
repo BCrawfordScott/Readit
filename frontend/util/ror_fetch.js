@@ -22,16 +22,20 @@ const buildReq = (method, payload) => {
   };
 };
 
-// Response handlers
+// Response handler
 
-const formatResponse = (response) => {
+const formatResponse = async (response) => {
+  if (response.status >= 400) {
+    throw new Error(await response.json())
+  }
+
   return response.json();
 };
 
-const passErr = err => err;
-
 // Fetch API wrapper
 
-export const rorFetch = (path, method = 'GET', payload) => {
-  return fetch(path, buildReq(method, payload)).then(formatResponse, passErr);
+const rorFetch = async (path, method = 'GET', payload) => {
+  return await fetch(path, buildReq(method, payload)).then(formatResponse);
 };
+
+export default rorFetch;
