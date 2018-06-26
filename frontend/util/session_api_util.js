@@ -1,9 +1,16 @@
-import rorFetch from './ror_fetch.js';
+import jorFetch from './jor_fetch.js';
 
 export const login = (user) => {
-  return rorFetch('/api/session', 'POST', user);
+  return jorFetch({
+    path: '/api/session',
+    method: 'POST',
+    data: { user }
+  });
 };
 
 export const logout = () => {
-  return rorFetch('/api/session', 'DELETE');
+  return jorFetch({
+    path:'/api/session',
+    method: 'DELETE'
+  });
 };

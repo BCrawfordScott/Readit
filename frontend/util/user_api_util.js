@@ -1,17 +1,31 @@
-import rorFetch from './ror_fetch.js';
+import jorFetch from './jor_fetch.js';
 
 export const fetchUser = (id) => {
-  return rorFetch(`/api/users/${id}`);
+  return jorFetch({
+    path: `/api/users/${id}`
+  });
 };
 
 export const createUser = (user) => {
-  return rorFetch("/api/users", 'POST', user);
+  return jorFetch({
+    path: "/api/users",
+    method: 'POST',
+    data: { user }
+  });
 };
 
 export const updateUser = (user) => {
-  return rorFetch(`/api/users/${user.id}`, 'PATCH', user);
+  return jorFetch({
+    path: `/api/users/${user.id}`,
+    method: 'PATCH',
+    data: { user }
+  });
 };
 
 export const deleteUser = (id) => {
-  return rorFetch(`/api/users/${id}`, 'DELETE', id);
+  return jorFetch({
+    path: `/api/users/${id}`,
+    method: 'DELETE',
+    data: id
+  });
 };

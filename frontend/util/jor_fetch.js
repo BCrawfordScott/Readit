@@ -1,6 +1,6 @@
-/////////////////////////////////////////////////////////////////
-// Fetch API Wrapper for Ruby on Rails JSON API                //
-/////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+// Fetch API Wrapper for Ruby on Rails JSON API (JSON on RAILS) //
+//////////////////////////////////////////////////////////////////
 
 // Request Body Constructor
 
@@ -13,7 +13,7 @@ const headers = {
   'Accept': 'application/json'
 };
 
-const buildReq = (method, payload) => {
+const buildReq = (method = 'GET', payload) => {
   return {
     headers: headers,
     body: JSON.stringify(payload),
@@ -34,8 +34,11 @@ const formatResponse = async (response) => {
 
 // Fetch API wrapper
 
-const rorFetch = async (path, method = 'GET', payload) => {
-  return await fetch(path, buildReq(method, payload)).then(formatResponse);
+const jorFetch = async (options) => {
+  return await fetch(
+    options.path,
+    buildReq(options.method, options.data)
+  ).then(formatResponse);
 };
 
-export default rorFetch;
+export default jorFetch;
