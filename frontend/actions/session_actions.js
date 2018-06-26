@@ -21,16 +21,15 @@ export const removeCurrentUser = (userId) => {
 export const receiveSessionErrors = err => {
   return {
     type: RECEIVE_SESSION_ERRORS,
-    err: err.message
+    err: err
   };
 };
 
 export const login = user => dispatch => {
   return APIUtil.login(user).then(
-    currentUser => {
-      return dispatch(receiveCurrentUser(currentUser));
-    },
-    err => dispatch(receiveSessionErrors(err)));
+    currentUser => dispatch(receiveCurrentUser(currentUser)),
+    err => dispatch(receiveSessionErrors(err))
+  );
 };
 
 export const logout = () => dispatch => {

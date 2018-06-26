@@ -25,17 +25,18 @@ const buildReq = (method = 'GET', payload) => {
 // Response handler
 
 const formatResponse = async (response) => {
-  if (response.status >= 400) {
-    throw new Error(await response.json())
+  if (!response.ok) {
+    return Promise.reject(await response.json());
+  } else {
+    return response.json();
   }
 
-  return response.json();
 };
 
 // Fetch API wrapper
 
-const jorFetch = async (options) => {
-  return await fetch(
+const jorFetch = (options) => {
+  return fetch(
     options.path,
     buildReq(options.method, options.data)
   ).then(formatResponse);
