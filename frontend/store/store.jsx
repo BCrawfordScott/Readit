@@ -5,7 +5,7 @@ import logger from 'redux-logger';
 import rootReducer from '../reducers/root_reducer';
 
 const _defaultState = {
-  session: {},
+  session: {id: null},
   entities: {},
   errors: {}
 };

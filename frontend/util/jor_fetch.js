@@ -24,13 +24,14 @@ const buildReq = (method = 'GET', payload) => {
 
 // Response handler
 
-const formatResponse = async (response) => {
+const formatResponse = (response) => {
   if (!response.ok) {
-    return Promise.reject(await response.json());
+    return response.json().then(error => {
+      return Promise.reject(error);
+    });
   } else {
     return response.json();
   }
-
 };
 
 // Fetch API wrapper

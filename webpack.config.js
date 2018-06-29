@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-  entry: ['babel-polyfill', './frontend/readit.jsx'],
+  entry: './frontend/readit.jsx',
   output: {
     path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
     filename: './bundle.js',

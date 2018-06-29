@@ -6,7 +6,7 @@ import {
 const sessionErrorsReducer = (state, action) => {
   switch(action.type){
     case RECEIVE_SESSION_ERRORS:
-      return [action.err];
+      return action.err;
     default:
       return null;
   }

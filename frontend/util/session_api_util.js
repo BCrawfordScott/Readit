@@ -4,7 +4,7 @@ export const login = (user) => {
   return jorFetch({
     path: '/api/session',
     method: 'POST',
-    data: { user }
+    data: user
   });
 };
 
